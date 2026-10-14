@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Data Science at the University of Regina | Department of Computer Science</title>
+  <style>
+    :root {
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      --bg: #fbfaf6;
+      --surface: #ffffff;
+      --surface-alt: #f0ede4;
+      --text: #1c2a22;
+      --muted: #55655b;
+      --accent: #0b5d3b;
+      --accent-text: #ffffff;
+      --gold: #b7892b;
+      --border: #dcd7c8;
+      --font-head: Georgia, "Times New Roman", serif;
+      --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #101713;
+        --surface: #18221c;
+        --surface-alt: #1d2a22;
+        --text: #e8eee9;
+        --muted: #a5b4aa;
+        --accent: #5fc79a;
+        --accent-text: #0b1a12;
+        --gold: #e0b45a;
+        --border: #2c3b32;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #101713;
+      --surface: #18221c;
+      --surface-alt: #1d2a22;
+      --text: #e8eee9;
+      --muted: #a5b4aa;
+      --accent: #5fc79a;
+      --accent-text: #0b1a12;
+      --gold: #e0b45a;
+      --border: #2c3b32;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.65;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-head);
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 10;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-family: var(--font-head);
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav ul a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .92rem;
+    }
+
+    nav ul a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: var(--accent);
+      color: var(--accent-text);
+      padding: 72px 0 80px;
+    }
+
+    .hero .eyebrow {
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .8rem;
+      opacity: .85;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      max-width: 18ch;
+    }
+
+    .hero p {
+      max-width: 58ch;
+      font-size: 1.1rem;
+      opacity: .95;
+    }
+
+    .btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid var(--accent-text);
+    }
+
+    .btn.primary {
+      background: var(--accent-text);
+      color: var(--accent);
+    }
+
+    .btn.ghost {
+      color: var(--accent-text);
+    }
+
+    section {
+      padding: 56px 0;
+    }
+
+    section.alt {
+      background: var(--surface-alt);
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 68ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .75rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .card ul {
+      padding-left: 1.1em;
+      margin: .6em 0 0;
+    }
+
+    .card li {
+      margin-bottom: .35em;
+    }
+
+    .stats {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      margin-top: 24px;
+    }
+
+    .stat {
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 12px;
+    }
+
+    .stat b {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 1.9rem;
+      color: var(--accent);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .scroll {
+      overflow-x: auto;
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 640px;
+      font-size: .95rem;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td:first-child {
+      font-weight: 600;
+    }
+
+    .us {
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .topics span {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: .92rem;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-top: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    details p {
+      margin: .6em 0 0;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 40px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    footer p {
+      margin: 0 0 .5em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#top">U of R &middot; Data Science</a>
+      <ul>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#learn">What you'll learn</a></li>
+        <li><a href="#why">Why Regina</a></li>
+        <li><a href="#compare">Comparison</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="eyebrow">Department of Computer Science &middot; University of Regina</div>
+      <h1>Turn data into decisions.</h1>
+      <p>Learn to explore, prepare, visualize, and model data, and to explain what it means, in programs built jointly
+        by Computer Science and Mathematics &amp; Statistics on the Prairies.</p>
+      <div class="btns">
+        <a class="btn primary" href="#programs">Explore programs</a>
+        <a class="btn ghost" href="https://www.uregina.ca/academics/programs/science/data-science.html" target="_blank"
+          rel="noopener">Official U of R page</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="programs">
+    <div class="wrap">
+      <h2>Two ways to study data science</h2>
+      <p class="lead">Whether you are starting university or upgrading your skills, there is a path that fits.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="tag">Undergraduate</div>
+          <h3>Bachelor of Science in Data Science</h3>
+          <ul>
+            <li>Four-year degree offered jointly by Computer Science and Mathematics &amp; Statistics.</li>
+            <li>Combines analytics, machine learning, programming, and AI.</li>
+            <li>The only undergraduate data science degree in Saskatchewan.</li>
+            <li>Available through the University of Regina and its federated colleges (Campion, First Nations University
+              of Canada, Luther).</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="tag">Graduate</div>
+          <h3>MSc in Computer Science (Data Science)</h3>
+          <ul>
+            <li>Course-based degree: 30 credits, no thesis required.</li>
+            <li>Typically two years full-time.</li>
+            <li>Focus on data-focused programming, the data science lifecycle, statistics, and machine learning.</li>
+            <li>Designed for new graduates and for professionals moving into data work.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>4 yrs</b><span>BSc Data Science</span></div>
+        <div class="stat"><b>30 cr</b><span>Course-based MSc</span></div>
+        <div class="stat"><b>1982</b><span>CS accredited by CSAC, continuously since</span></div>
+        <div class="stat"><b>SGI</b><span>Industry partner in curriculum development</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="learn">
+    <div class="wrap">
+      <h2>What you'll learn</h2>
+      <p class="lead">Data science sits where mathematics, statistics, and computer science meet. Our curriculum follows
+        the full data science lifecycle, from raw data to a clear recommendation.</p>
+      <div class="topics">
+        <span>Programming for data</span>
+        <span>Statistics &amp; probability</span>
+        <span>Machine learning</span>
+        <span>Data mining</span>
+        <span>Data preparation &amp; cleaning</span>
+        <span>Visualization &amp; presentation</span>
+        <span>Artificial intelligence</span>
+        <span>Communicating results</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Explore &amp; prepare</h3>
+          <p>Collect, clean, and structure messy real-world data so it is ready for analysis.</p>
+        </article>
+        <article class="card">
+          <h3>Model &amp; predict</h3>
+          <p>Apply statistical methods and machine learning to find patterns and make predictions.</p>
+        </article>
+        <article class="card">
+          <h3>Visualize &amp; communicate</h3>
+          <p>Present findings so that non-technical decision makers can understand and act on them.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap">
+      <h2>Why study data science at Regina?</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Built with industry</h3>
+          <p>The programs were developed through a partnership with Saskatchewan Government Insurance (SGI), which
+            funded a post-doctoral fellowship to design the course content.</p>
+        </article>
+        <article class="card">
+          <h3>An interdisciplinary team</h3>
+          <p>Computer Science and Mathematics &amp; Statistics teach the bachelor's degree together, so you get both
+            computing and statistical depth.</p>
+        </article>
+        <article class="card">
+          <h3>A long record of quality</h3>
+          <p>The Department of Computer Science has been continuously accredited by the Computer Science Accreditation
+            Council since 1982.</p>
+        </article>
+        <article class="card">
+          <h3>Research labs</h3>
+          <p>Computer Science facilities include specialized labs, such as a Data Mining Lab, where students can work on
+            hands-on projects.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="compare">
+    <div class="wrap">
+      <h2>How we fit in the Canadian landscape</h2>
+      <p class="lead">We looked at three leading Canadian programs while designing ours. Each takes a different
+        approach, and we borrowed ideas from all of them.</p>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>UBC Master of Data Science</th>
+              <th>U of Toronto MScAC (Data Science)</th>
+              <th>Waterloo MDSAI</th>
+              <th class="us">U of Regina</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Length</td>
+              <td>10 months</td>
+              <td>8 months of courses, then an internship</td>
+              <td>16 months (co-op option)</td>
+              <td class="us">2 years (MSc); 4 years (BSc)</td>
+            </tr>
+            <tr>
+              <td>Signature feature</td>
+              <td>Fast, interdisciplinary; capstone project</td>
+              <td>Applied-research internship with a partner company</td>
+              <td>Required optimization course; co-op</td>
+              <td class="us">Industry-informed curriculum; only undergrad data science degree in the province</td>
+            </tr>
+            <tr>
+              <td>Departments involved</td>
+              <td>Computer Science &amp; Statistics</td>
+              <td>Computer Science &amp; Statistical Sciences</td>
+              <td>CS, Statistics, Combinatorics &amp; Optimization</td>
+              <td class="us">Computer Science &amp; Mathematics and Statistics</td>
+            </tr>
+            <tr>
+              <td>Thesis?</td>
+              <td>No (capstone)</td>
+              <td>No</td>
+              <td>No (coursework)</td>
+              <td class="us">No (course-based MSc)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2>Frequently asked questions</h2>
+      <details>
+        <summary>Do I need a computer science background?</summary>
+        <p>Requirements differ by program. Check the University of Regina admissions pages for the current prerequisites
+          for the BSc and for the MSc (Data Science).</p>
+      </details>
+      <details>
+        <summary>Can I transfer into the Data Science program?</summary>
+        <p>Yes. Students can transfer from another U of R program or from other colleges and universities, provided they
+          meet Faculty of Science admission requirements.</p>
+      </details>
+      <details>
+        <summary>Is the MSc a thesis degree?</summary>
+        <p>No. The MSc in Computer Science (Data Science) is course-based, with 30 credits of coursework.</p>
+      </details>
+      <details>
+        <summary>What careers can I pursue?</summary>
+        <p>Graduates work as data analysts, data scientists, machine learning specialists, and researchers across
+          industries such as insurance, energy, finance, and government.</p>
+      </details>
+      <details>
+        <summary>Where do I apply?</summary>
+        <p>Visit the <a href="https://www.uregina.ca/academics/programs/science/data-science.html" target="_blank"
+            rel="noopener">undergraduate</a> or <a
+            href="https://www.uregina.ca/academics/programs/science/master-phd-computer-science.html" target="_blank"
+            rel="noopener">graduate</a> program page on the University of Regina website.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Department of Computer Science, University of Regina</strong> &middot; 3737 Wascana Parkway, Regina,
+        Saskatchewan</p>
+      <p>Comparison sources: UBC Master of Data Science, University of Toronto MScAC, University of Waterloo MDSAI, and
+        University of Regina program pages.</p>
+      <p>This page was created for CS 716 (Communication in Data Science), Assignment 1. It is a student project, not an
+        official University of Regina website. Always confirm details with the university.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
